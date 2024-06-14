@@ -1,10 +1,12 @@
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/lexico/MyLexer.java
+/home/diego/NetBeansProjects/PL/src/main/java/proleg/SystemOutToJFrame.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/sintactico/MyParser.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/lexico/MyCompilerLex.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/lexico/Lexer.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/ast/Base.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/puntos/MyCompilerPuntos.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/afd/AFD.java
+/home/diego/NetBeansProjects/PL/src/main/java/proleg/Main.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/afd/Estado.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/lexico/Token.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/puntos/Tupla.java
@@ -17,6 +19,7 @@
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/ast/INodo.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/ast/Operador.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/puntos/MyPuntos.java
+/home/diego/NetBeansProjects/PL/src/main/java/proleg/Comment.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/lexico/BufferedCharStream.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/Menu.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/lexico/LexicalError.java
@@ -24,4 +27,5 @@
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/afd/Opcion5.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/semantico/MyCompilerSem.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/ast/AST.java
+/home/diego/NetBeansProjects/PL/src/main/java/proleg/Coder.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/semantico/MyETDSDesc.java

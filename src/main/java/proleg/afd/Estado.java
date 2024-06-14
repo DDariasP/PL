@@ -27,7 +27,7 @@ public class Estado {
 
     //Estado inicial
     public Estado(Expresion exp0) {
-        nombre = "s0";
+        nombre = "0";
         listaExp = new ArrayList<>();
         listaExp.add(exp0);
         ultimo = false;
@@ -35,7 +35,7 @@ public class Estado {
 
     //Estado generico
     public Estado(ArrayList<Expresion> proto) {
-        nombre = "s" + NUM;
+        nombre = String.valueOf(NUM);
         NUM++;
         listaExp = proto;
         ultimo = false;

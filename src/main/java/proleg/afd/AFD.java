@@ -11,11 +11,13 @@ import proleg.puntos.*;
  */
 public class AFD {
 
+    public String nombre;
     public Estado inicial;
     public Estado verde;
     public Transicion ultima;
     public ArrayList<Estado> listaS;
     public ArrayList<Transicion> listaT;
+    public String[] st;
 
     /**
      * Constructor.
@@ -23,6 +25,7 @@ public class AFD {
      * @param afd Autómata resultado del algoritmo de puntos.
      */
     public AFD(ArrayList<Estado> afd) {
+
         inicial = afd.get(0);
         verde = afd.get(afd.size() - 1);
         listaS = afd;

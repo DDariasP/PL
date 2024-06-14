@@ -182,7 +182,7 @@ public class Menu extends JFrame {
                     System.out.println("Correcto");
                     //Inicia el algoritmo
                     labelArchivo.setText("Autómata cargado: " + fileName);
-                    automata = new AFD(MyPuntos.genAFD(parser.getAST()));
+                    automata = MyPuntos.genAFD(parser.getAST());
                 } else {
                     System.out.println("Incorrecto");
                 }
@@ -291,7 +291,7 @@ public class Menu extends JFrame {
         Menu m = new Menu();
         m.setDefaultCloseOperation(EXIT_ON_CLOSE);
         m.setBounds(200, 200, 370, 450);
-        m.setTitle("AMC - Práctica 2");
+        m.setTitle("PL - Proyecto");
         m.setVisible(true);
     }
 

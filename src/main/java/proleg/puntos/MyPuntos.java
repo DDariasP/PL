@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MyPuntos implements MyConstants {
 
     //Genera el Estado inicial y lo pasa al algoritmo
-    public static ArrayList<Estado> genAFD(AST ast) {
+    public static AFD genAFD(AST ast) {
         //Expresion inicial
         Expresion exp0 = new Expresion(ast);
         //Estado inicial
@@ -53,7 +53,18 @@ public class MyPuntos implements MyConstants {
             System.out.println(listaAFD.get(i));
         }
         //Devuelve el AFD
-        return listaAFD;
+        AFD afd = new AFD(listaAFD);
+        afd.nombre = ast.arbol.getNombre();
+        afd.st = listaST.toArray(String[]::new);
+        for (int i = 0; i < afd.listaS.size(); i++) {
+            Estado s = afd.listaS.get(i);
+            Expresion exp = s.listaExp.get(0);
+            if (s.listaExp.size() == 1
+                    && exp.posP == exp.nodos.size()) {
+                s.ultimo = true;
+            }
+        }
+        return afd;
     }
 
     //Algoritmo de avanzar el punto
@@ -114,8 +125,6 @@ public class MyPuntos implements MyConstants {
                         cima.destinos[numSym] = new Tupla(symST, sigS);
                     }
                 }
-                //Si esta vacio, la cima es el Estado final
-                cima.ultimo = true;
             }
         }
     }
