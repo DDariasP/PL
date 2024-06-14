@@ -1,0 +1,66 @@
+@options
+@packages
+-classpath
+'/home/diego/.m2/repository/net/sf/jung/jung-algorithms/2.1.1/jung-algorithms-2.1.1.jar:/home/diego/.m2/repository/net/sf/jung/jung-api/2.1.1/jung-api-2.1.1.jar:/home/diego/.m2/repository/com/google/guava/guava/19.0/guava-19.0.jar:/home/diego/.m2/repository/net/sf/jung/jung-graph-impl/2.1.1/jung-graph-impl-2.1.1.jar:/home/diego/.m2/repository/net/sf/jung/jung-io/2.1.1/jung-io-2.1.1.jar:/home/diego/.m2/repository/net/sf/jung/jung-samples/2.1.1/jung-samples-2.1.1.jar:/home/diego/.m2/repository/net/sf/jung/jung-visualization/2.1.1/jung-visualization-2.1.1.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+-sourcepath
+'/home/diego/NetBeansProjects/PL/src/main/java:/home/diego/NetBeansProjects/PL/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/diego/NetBeansProjects/PL/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'PL v1.6 API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' '/home/diego/NetBeansProjects/PL/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'PL v1.6 API'
+proleg.puntos
+proleg
+proleg.afd
+proleg.sintactico
+proleg.lexico
+proleg.semantico
+proleg.ast
+/home/diego/.m2/repository/net/sf/jung/jung-algorithms/2.1.1/jung-algorithms-2.1.1.jar = 1473260079000
+/home/diego/.m2/repository/net/sf/jung/jung-api/2.1.1/jung-api-2.1.1.jar = 1473259993000
+/home/diego/.m2/repository/com/google/guava/guava/19.0/guava-19.0.jar = 1449694715000
+/home/diego/.m2/repository/net/sf/jung/jung-graph-impl/2.1.1/jung-graph-impl-2.1.1.jar = 1473260024000
+/home/diego/.m2/repository/net/sf/jung/jung-io/2.1.1/jung-io-2.1.1.jar = 1473260112000
+/home/diego/.m2/repository/net/sf/jung/jung-samples/2.1.1/jung-samples-2.1.1.jar = 1473260221000
+/home/diego/.m2/repository/net/sf/jung/jung-visualization/2.1.1/jung-visualization-2.1.1.jar = 1473260175000
+/home/diego/NetBeansProjects/PL/src/main/java = 1718382977799
+/home/diego/NetBeansProjects/PL/target/generated-sources/annotations = 1718383170693
+/home/diego/NetBeansProjects/PL/target/apidocs/element-list = 1718383175797
+/home/diego/NetBeansProjects/PL/target/apidocs/type-search-index.zip = 1718383175969
+/home/diego/NetBeansProjects/PL/target/apidocs/deprecated-list.html = 1718383175989
+/home/diego/NetBeansProjects/PL/target/apidocs/index.html = 1718383175997
+/home/diego/NetBeansProjects/PL/target/apidocs/member-search-index.zip = 1718383175969
+/home/diego/NetBeansProjects/PL/target/apidocs/script.js = 1718383176001
+/home/diego/NetBeansProjects/PL/target/apidocs/index-all.html = 1718383175977
+/home/diego/NetBeansProjects/PL/target/apidocs/overview-tree.html = 1718383175937
+/home/diego/NetBeansProjects/PL/target/apidocs/overview-summary.html = 1718383175997
+/home/diego/NetBeansProjects/PL/target/apidocs/stylesheet.css = 1718383176001
+/home/diego/NetBeansProjects/PL/target/apidocs/allclasses.html = 1718383175993
+/home/diego/NetBeansProjects/PL/target/apidocs/jquery-ui.overrides.css = 1718383176009
+/home/diego/NetBeansProjects/PL/target/apidocs/package-search-index.js = 1718383175969
+/home/diego/NetBeansProjects/PL/target/apidocs/package-search-index.zip = 1718383175969
+/home/diego/NetBeansProjects/PL/target/apidocs/allpackages-index.html = 1718383175985
+/home/diego/NetBeansProjects/PL/target/apidocs/constant-values.html = 1718383175833
+/home/diego/NetBeansProjects/PL/target/apidocs/allclasses-index.html = 1718383175985
+/home/diego/NetBeansProjects/PL/target/apidocs/help-doc.html = 1718383176001
+/home/diego/NetBeansProjects/PL/target/apidocs/serialized-form.html = 1718383175845
+/home/diego/NetBeansProjects/PL/target/apidocs/search.js = 1718383176005
+/home/diego/NetBeansProjects/PL/target/apidocs/type-search-index.js = 1718383175969
+/home/diego/NetBeansProjects/PL/target/apidocs/member-search-index.js = 1718383175969
