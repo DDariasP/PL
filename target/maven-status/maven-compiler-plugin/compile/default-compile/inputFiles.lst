@@ -19,7 +19,6 @@
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/ast/INodo.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/ast/Operador.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/puntos/MyPuntos.java
-/home/diego/NetBeansProjects/PL/src/main/java/proleg/Comment.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/lexico/BufferedCharStream.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/Menu.java
 /home/diego/NetBeansProjects/PL/src/main/java/proleg/lexico/LexicalError.java

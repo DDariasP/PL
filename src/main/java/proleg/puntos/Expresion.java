@@ -48,6 +48,7 @@ public class Expresion {
             }
             array[t] = sb.toString();
         }
+        System.out.println(Arrays.toString(array));
         return array;
     }
 
@@ -66,8 +67,6 @@ public class Expresion {
         Tupla[] array = listaTP.toArray(Tupla[]::new);
         //Enlaza los simbolos no terminales
         Tupla.asociarPares(array);
-        //Enlaza los simbolos '|', que tienen un tratamiento especial
-        Tupla.asociarOR(array);
         return listaTP;
     }
 
@@ -102,17 +101,16 @@ public class Expresion {
                         //Saltar delante de su simbolo complementario
                         Reglas.R2(exp, listaCanon);
                         break;
+                    case "+(":
+                        //Avanzar una posicion
+                        Reglas.R1(exp, listaCanon);
+                        break;
                     case "|(":
                         //Avanzar una posicion
                         Reglas.R1(exp, listaCanon);
-                        //Saltar delante de su '|' enlazado
-                        Reglas.R3(exp, listaCanon);
+                        //Saltar delante de su simbolo complementario
+                        Reglas.R2(exp, listaCanon);
                         break;
-                    case "|":
-                        //Saltar delante de su parentesis final
-                        Reglas.R4(exp, listaCanon);
-                        break;
-                    case "+(":
                     case ")|":
                         //Avanzar una posicion
                         Reglas.R1(exp, listaCanon);

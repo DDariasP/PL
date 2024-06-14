@@ -20,7 +20,7 @@ public class Tupla {
     public String sym;
     public boolean terminal;
     public int pos;
-    public Tupla par1, par2, parOR;
+    public Tupla par;
     public boolean paired;
     //Tupla a partir de un Estado
     public String symT;
@@ -32,9 +32,7 @@ public class Tupla {
         //Si no es un simbolo Operador, es terminal
         terminal = !Arrays.asList(Operador.lista).contains(sym);
         pos = n;
-        par1 = null;
-        par2 = null;
-        parOR = null;
+        par = null;
         paired = false;
     }
 
@@ -140,74 +138,19 @@ public class Tupla {
         }
         //Tras encontrar su mitad complementaria, las enlaza
         //y marca ambas como enlazadas
-        firstR.par1 = ante;
+        firstR.par = ante;
         firstR.paired = true;
-        ante.par1 = firstR;
+        ante.par = firstR;
         ante.paired = true;
-    }
-
-    //Cuando ha enlazado el resto de simbolos, enlaza las partes de los '|'
-    public static void asociarOR(Tupla[] array) {
-        for (int i = 0; i < array.length; i++) {
-            Tupla buscador = array[i];
-            //Solo las mitades izquierdas buscan sus partes
-            if (buscador.sym.equals("|(")) {
-                boolean encontrado = false;
-                int pos = i + 1;
-                //Recuerda las mitades de su tipo encontradas hasta el momento,
-                //sean o no complementarias
-                int contL = 0;
-                int contR = 0;
-                //Mientras no encuentre sus partes y no llegue al final de la expresion
-                while (!encontrado && pos < array.length) {
-                    Tupla sig = array[pos];
-                    switch (sig.sym) {
-                        //Suma las mitades izquierdas
-                        case "|(":
-                            contL++;
-                            break;
-                        //Suma las mitades derechas
-                        case ")|":
-                            contR++;
-                            break;
-                        //Cuando encuentra su parte intermedia
-                        case "|":
-                            //Si ha encontrado el mismo numero de mitades de
-                            //cada tipo, el '|' encontrado es su parte intermedia
-                            if (contL == contR) {
-                                encontrado = true;
-                                //Se enlaza con el '|'
-                                buscador.parOR = sig;
-                                buscador.par1.parOR = sig;
-                                sig.par1 = buscador;
-                                //Enlaza al '|' con su mitad complementaria
-                                sig.par2 = buscador.par1;
-                                sig.paired = true;
-                                break;
-                            }
-                        default:
-                    }
-                    //Si no, sigue avanzando
-                    pos++;
-                }
-            }
-        }
     }
 
     //Para cada tupla muestra su simbolo y posicion, y el simbolo y posicion
     //de su mitad complementaria
-    //Las partes de OR muestran el simbolo y posicion de todas sus partes
     @Override
     public String toString() {
         String output = "['" + sym + "'," + pos + "]";
-        if (par1 != null) {
-            output = output + " ['" + par1.sym + "'," + par1.pos + "]";
-        }
-        if (par2 != null) {
-            output = output + " ['" + par2.sym + "'," + par2.pos + "]";
-        }
-        if (parOR != null) {
-            output = output + " ['" + parOR.sym + "'," + parOR.pos + "]";
+        if (par != null) {
+            output = output + " ['" + par.sym + "'," + par.pos + "]";
         }
         return output;
     }

@@ -1,13 +1,10 @@
 Comment
-|---Base: 'b'
-|---Base: 'a'
-|---Operador: *
-|       |---Operador: (
-|       |       |---Operador: *
-|       |       |       |---Base: 'a'
-|       |       |---Base: 'o'
-|       |       |---Operador: |
-|       |       |---Base: 'b'
-|---Operador: +
-|       |---Base: 'a'
-|---Base: 'b'
+     |-----Opcionalidad: '|'
+               |-----Opcionalidad: '|'
+                         |-----Terminal: 'a'
+                              OR
+                         |-----Terminal: 'o'
+                    OR
+               |-----Terminal: 'b'
+                    OR
+               |-----Terminal: 'c'

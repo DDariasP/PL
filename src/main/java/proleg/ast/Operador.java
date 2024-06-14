@@ -73,7 +73,7 @@ public class Operador implements INodo {
         switch (ID) {
             //Muestra cada tipo de operador con su simbolo
             case MyConstants.OR:
-                output = nombre;
+                output = ")| |(";
                 break;
             case MyConstants.LPAREN:
             case MyConstants.RPAREN:

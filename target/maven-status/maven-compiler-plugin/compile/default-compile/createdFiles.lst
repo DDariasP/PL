@@ -19,7 +19,6 @@ proleg/lexico/Lexer.class
 proleg/lexico/MyCompilerLex.class
 proleg/Menu$3.class
 proleg/Main.class
-Comment.class
 proleg/ast/INodo.class
 proleg/afd/AFD.class
 proleg/semantico/MyCompilerSem.class

@@ -24,27 +24,7 @@ public class Reglas {
         Expresion nuevaE = new Expresion(exp);
         ArrayList<Tupla> v = nuevaE.nodos;
         int p = nuevaE.posP;
-        Tupla par = v.get(p).par1;
-        nuevaE.posP = par.pos + 1;
-        Expresion.clausuraLambda(nuevaE, listaCanon);
-    }
-
-    // .( x | y ) => ( x | .y )
-    public static void R3(Expresion exp, ArrayList<Expresion> listaCanon) {
-        Expresion nuevaE = new Expresion(exp);
-        ArrayList<Tupla> v = nuevaE.nodos;
-        int p = nuevaE.posP;
-        Tupla par = v.get(p).parOR;
-        nuevaE.posP = par.pos + 1;
-        Expresion.clausuraLambda(nuevaE, listaCanon);
-    }
-
-    // ( x. | y ) => ( x | y ).
-    public static void R4(Expresion exp, ArrayList<Expresion> listaCanon) {
-        Expresion nuevaE = new Expresion(exp);
-        ArrayList<Tupla> v = nuevaE.nodos;
-        int p = nuevaE.posP;
-        Tupla par = v.get(p).par2;
+        Tupla par = v.get(p).par;
         nuevaE.posP = par.pos + 1;
         Expresion.clausuraLambda(nuevaE, listaCanon);
     }

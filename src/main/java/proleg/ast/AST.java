@@ -51,13 +51,11 @@ public class AST {
         //Pinta las ramas
         String tab = "\n";
         for (int i = 0; i < nivel; i++) {
-            if (i % 2 == 0) {
-                tab = tab + "|   ";
-            } else {
-                tab = tab + "    ";
-            }
+  
+                tab = tab + "     ";
+
         }
-        String output = tab + "|---";
+        String output = tab + "     ";
         //Decide como pintar un nodo segun su tipo
         INodo hijo = a.getHijoN(numh);
         switch (hijo.getID()) {
@@ -85,13 +83,33 @@ public class AST {
 
     //Pinta los simbolos terminales directamente
     private static String pintarBase(INodo h) {
-        String output = "Base: " + h.getNombre();
+        String output = "|-----Terminal: " + h.getNombre();
         return output;
     }
 
     //Pinta los operadores
     private static String pintarOperacion(INodo h, int nivel) {
-        String output = "Operador: " + h.getNombre();
+        String output;
+        switch (h.getNombre()) {
+            case "*":
+                output = "|-----Clausura Kleen: '*'";
+                break;
+            case "+":
+                output = "|-----Clausura positiva: '+'";
+                break;
+            case "?":
+                output = "|-----Opcionalidad: '?'";
+                break;
+            case "|":
+                output = "     OR";
+                break;
+            case "(":
+            case ")":
+                output = "|-----Opcionalidad: '|'";
+                break;
+            default:
+                throw new AssertionError();
+        }
         //Baja de nivel para pintar los hijos del elemento
         for (int numh = 0; numh < h.getNumHijos(); numh++) {
             output = output + pintarHijo(h, numh, nivel + 1);
