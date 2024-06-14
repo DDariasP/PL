@@ -1,0 +1,13 @@
+Comment
+|---Base: 'b'
+|---Base: 'a'
+|---Operador: *
+|       |---Operador: (
+|       |       |---Operador: *
+|       |       |       |---Base: 'a'
+|       |       |---Base: 'o'
+|       |       |---Operador: |
+|       |       |---Base: 'b'
+|---Operador: +
+|       |---Base: 'a'
+|---Base: 'b'
