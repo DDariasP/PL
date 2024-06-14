@@ -1,6 +1,7 @@
 package proleg.afd;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import proleg.puntos.*;
 
 /**
@@ -22,19 +23,20 @@ public class AFD {
      * @param afd Autómata resultado del algoritmo de puntos.
      */
     public AFD(ArrayList<Estado> afd) {
-        inicial=afd.get(0);
-        verde=afd.get(0);
-        listaS=afd;
+        inicial = afd.get(0);
+        verde = afd.get(afd.size() - 1);
+        listaS = afd;
+        listaT = new ArrayList<>();
         for (int i = 0; i < listaS.size(); i++) {
-            Estado s =listaS.get(i);
+            Estado s = listaS.get(i);
             for (int j = 0; j < s.destinos.length; j++) {
                 Tupla tp = s.destinos[j];
-                if(tp!=null){
-                    listaT.add(new Transicion(s,tp.symT,tp.destino));
+                if (tp != null) {
+                    listaT.add(new Transicion(s, tp.symT, tp.destino));
                 }
             }
         }
-       
+
     }
 
     /**
@@ -73,16 +75,17 @@ public class AFD {
     /**
      * Comprueba la cadena pasada e indica si el autómata la reconoce o no.
      *
-     * @param cadena String con la cadena a comprobar.
+     * @param tokens Array con la cadena a comprobar.
      * @return true en caso de reconocer la cadena o false en caso contrario.
      */
-    public boolean reconocer(String cadena) {
+    public boolean reconocer(String[] tokens) {
         //el primer estado es el inicial
         Estado actual = inicial;
         //analiza cada carácter de la cadena
-        for (int i = 0; i < cadena.length(); i++) {
+        for (int i = 0; i < tokens.length; i++) {
             //toma el siguiente carácter
-            String s = String.valueOf(cadena.charAt(i));
+            String s = tokens[i];
+            System.out.println(Arrays.toString(tokens));
             //comprueba las transiciones posibles
             int j = 0;
             boolean encontrado = false;

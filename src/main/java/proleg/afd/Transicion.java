@@ -32,7 +32,7 @@ public class Transicion {
      */
     @Override
     public String toString() {
-        return ("(" + origen + "," + simbolo + "," + destino + ")");
+        return ("(" + origen.nombre + "," + simbolo + "," + destino.nombre + ")");
     }
 
 }

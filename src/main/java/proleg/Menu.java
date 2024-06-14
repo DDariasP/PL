@@ -2,12 +2,17 @@ package proleg;
 
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import proleg.afd.*;
 import proleg.puntos.*;
 import proleg.semantico.*;
+import proleg.sintactico.SintaxException;
 
 /**
  * Menú principal con las opciones de la app.
@@ -20,6 +25,7 @@ public class Menu extends JFrame {
     public static File file;
     public static AFD automata;
     public static String cadena;
+    public static String[] tokens;
 
     /**
      * Constructor que inicializa los elementos del menú.
@@ -44,6 +50,7 @@ public class Menu extends JFrame {
         labelTitulo = new javax.swing.JLabel();
         labelArchivo = new javax.swing.JLabel();
         labelCadena = new javax.swing.JLabel();
+        botonOpcion1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +93,14 @@ public class Menu extends JFrame {
 
         labelCadena.setText("Cadena cargada:");
 
+        botonOpcion1.setText("1) Test completo");
+        botonOpcion1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        botonOpcion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonOpcion1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,7 +119,8 @@ public class Menu extends JFrame {
                                         .addComponent(botonOpcion2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(botonOpcion3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(botonOpcion5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botonOpcion4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(botonOpcion4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(botonOpcion1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(0, 40, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
@@ -117,7 +133,9 @@ public class Menu extends JFrame {
                 .addComponent(labelArchivo)
                 .addGap(18, 18, 18)
                 .addComponent(labelCadena)
-                .addGap(70, 70, 70)
+                .addGap(27, 27, 27)
+                .addComponent(botonOpcion1)
+                .addGap(18, 18, 18)
                 .addComponent(botonOpcion2)
                 .addGap(18, 18, 18)
                 .addComponent(botonOpcion3)
@@ -132,35 +150,47 @@ public class Menu extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * Mostrar todos las partes del proyecto.
+     *
+     * @param evt Acción sobre el botón.
+     */
+    private void botonOpcion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOpcion1ActionPerformed
+
+
+    }//GEN-LAST:event_botonOpcion1ActionPerformed
+
+    /**
      * Introducir un autómata leyendo un archivo ".txt".
      *
      * @param evt Acción sobre el botón.
      */
     private void botonOpcion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOpcion2ActionPerformed
-        try {
-            //abrir popup para elegir el archivo
-            JFileChooser fc = new JFileChooser();
-            fc.setDialogTitle("Elegir un archivo .txt");
-            FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
-            fc.setFileFilter(filter);
-            int input = fc.showOpenDialog(this);
-            //leer archivo
-            if (input == JFileChooser.APPROVE_OPTION) {
-                file = fc.getSelectedFile();
-                fileName = file.getName();
-                //crear el arbol
-                MyETDSDesc parser = new MyETDSDesc();
+        //abrir popup para elegir el archivo
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Elegir un archivo .txt");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
+        fc.setFileFilter(filter);
+        int input = fc.showOpenDialog(this);
+        //leer archivo
+        if (input == JFileChooser.APPROVE_OPTION) {
+            file = fc.getSelectedFile();
+            fileName = file.getName();
+            //crear el arbol
+            MyETDSDesc parser = new MyETDSDesc();
+            try {
                 if (parser.parse(file)) {
                     System.out.println("Correcto");
                     //Inicia el algoritmo
+                    labelArchivo.setText("Autómata cargado: " + fileName);
                     automata = new AFD(MyPuntos.genAFD(parser.getAST()));
                 } else {
                     System.out.println("Incorrecto");
                 }
+            } catch (IOException ex) {
+
+            } catch (SintaxException ex) {
+
             }
-        } catch (Exception e) {
-            //mensaje de error cuando el archivo no es válido
-            JOptionPane.showMessageDialog(this, "Archivo no válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonOpcion2ActionPerformed
 
@@ -177,6 +207,7 @@ public class Menu extends JFrame {
                 String s = String.valueOf(input);
                 if (s.length() <= 20) { //longitud máxima 20
                     cadena = s;
+                    tokens = s.split(" ");
                     labelCadena.setText("Cadena cargada: '" + cadena + "'");
                 } else {
                     throw new Exception();
@@ -202,7 +233,7 @@ public class Menu extends JFrame {
                 throw new Exception("No hay ninguna cadena cargada.");
             }
             //reconocer cadena
-            boolean reconocida = automata.reconocer(cadena);
+            boolean reconocida = automata.reconocer(tokens);
             String mensaje;
             if (reconocida) {
                 mensaje = "Cadena '" + cadena + "' aceptada";
@@ -265,6 +296,7 @@ public class Menu extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonOpcion1;
     private javax.swing.JButton botonOpcion2;
     private javax.swing.JButton botonOpcion3;
     private javax.swing.JButton botonOpcion4;

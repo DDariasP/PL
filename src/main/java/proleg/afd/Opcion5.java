@@ -15,6 +15,7 @@ public class Opcion5 extends JFrame {
 
     public int i;
     public String cadena;
+    public String[] tokens;
     public AFD automata;
     public VisualizationViewer<String, String> grafo;
     public JFrame gFrame;
@@ -29,6 +30,7 @@ public class Opcion5 extends JFrame {
         //inicializar los atributos
         i = -1;
         cadena = c;
+        tokens = c.split(" ");
         automata = new AFD(a);
         grafo = GrafoAFD.crear(automata);
 
@@ -110,12 +112,15 @@ public class Opcion5 extends JFrame {
      * @param evt Acción sobre el botón.
      */
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
+        //crear el grafo
+        JPanel panel = new JPanel();
+
         //avanzar en la cadena
         i++;
 
         //si aún no ha terminado de analizar la cadena
-        if (i < cadena.length()) {
-            String s = String.valueOf(cadena.charAt(i));
+        if (i < tokens.length) {
+            String s = tokens[i];
             labelChar.setText("Último carácter: '" + s + "'");
             //actualizar el grafo
             boolean avanza = false; //true cuando encuentre una transición válida
@@ -128,10 +133,8 @@ public class Opcion5 extends JFrame {
                 i = 100;
             }
             //muestra el grafo
-            JPanel panel = new JPanel();
             panel.add(grafo);
             gFrame.add(grafo);
-            gFrame.setVisible(false);
             gFrame.setVisible(true);
 
         } else { //si ha terminado el análisis
