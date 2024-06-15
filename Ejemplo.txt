@@ -1,4 +1,0 @@
-
-  /* Expresión regular que describe un comentario multilinea: b=barra, a=asterisco, o=otro */
-
-  Comment ::= ( ( 'a' | 'o' ) | 'b' | 'c' ) ;

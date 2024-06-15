@@ -1,10 +1,13 @@
 Comment
-     |-----Opcionalidad: '|'
+     |-----Terminal: 'b'
+     |-----Terminal: 'a'
+     |-----Clausura Kleen: '*'
                |-----Opcionalidad: '|'
-                         |-----Terminal: 'a'
-                              OR
+                         |-----Clausura Kleen: '*'
+                                   |-----Terminal: 'a'
                          |-----Terminal: 'o'
-                    OR
-               |-----Terminal: 'b'
-                    OR
-               |-----Terminal: 'c'
+                              OR
+                         |-----Terminal: 'b'
+     |-----Clausura positiva: '+'
+               |-----Terminal: 'a'
+     |-----Terminal: 'b'

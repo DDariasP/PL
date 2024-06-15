@@ -1,0 +1,26 @@
+[Row: 2][Column: 0][Kind: 3] Test
+[Row: 2][Column: 5][Kind: 5] ::=
+[Row: 2][Column: 9][Kind: 8] (
+[Row: 2][Column: 11][Kind: 8] (
+[Row: 2][Column: 13][Kind: 4] 'X'
+[Row: 2][Column: 17][Kind: 6] |
+[Row: 2][Column: 19][Kind: 8] (
+[Row: 2][Column: 21][Kind: 4] 'Y'
+[Row: 2][Column: 25][Kind: 9] )
+[Row: 2][Column: 26][Kind: 11] +
+[Row: 2][Column: 28][Kind: 9] )
+[Row: 2][Column: 30][Kind: 9] )
+[Row: 2][Column: 31][Kind: 12] ?
+[Row: 2][Column: 33][Kind: 8] (
+[Row: 2][Column: 35][Kind: 4] 'Z'
+[Row: 2][Column: 39][Kind: 8] (
+[Row: 2][Column: 41][Kind: 4] 'Z'
+[Row: 2][Column: 45][Kind: 6] |
+[Row: 2][Column: 47][Kind: 4] 'X'
+[Row: 2][Column: 51][Kind: 6] |
+[Row: 2][Column: 53][Kind: 4] 'Y'
+[Row: 2][Column: 57][Kind: 9] )
+[Row: 2][Column: 59][Kind: 9] )
+[Row: 2][Column: 60][Kind: 10] *
+[Row: 2][Column: 62][Kind: 7] ;
+[Row: 3][Column: 0][Kind: 0] 

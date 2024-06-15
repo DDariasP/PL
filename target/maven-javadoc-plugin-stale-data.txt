@@ -26,13 +26,13 @@
 -version
 -windowtitle
 'PL v1.6 API'
-proleg
-proleg.puntos
-proleg.afd
-proleg.sintactico
-proleg.lexico
-proleg.semantico
-proleg.ast
+prole.puntos
+prole
+prole.afd
+prole.sintactico
+prole.lexico
+prole.semantico
+prole.ast
 /home/diego/.m2/repository/net/sf/jung/jung-algorithms/2.1.1/jung-algorithms-2.1.1.jar = 1473260079000
 /home/diego/.m2/repository/net/sf/jung/jung-api/2.1.1/jung-api-2.1.1.jar = 1473259993000
 /home/diego/.m2/repository/com/google/guava/guava/19.0/guava-19.0.jar = 1449694715000
@@ -40,27 +40,27 @@ proleg.ast
 /home/diego/.m2/repository/net/sf/jung/jung-io/2.1.1/jung-io-2.1.1.jar = 1473260112000
 /home/diego/.m2/repository/net/sf/jung/jung-samples/2.1.1/jung-samples-2.1.1.jar = 1473260221000
 /home/diego/.m2/repository/net/sf/jung/jung-visualization/2.1.1/jung-visualization-2.1.1.jar = 1473260175000
-/home/diego/NetBeansProjects/PL/src/main/java = 1718400128448
-/home/diego/NetBeansProjects/PL/target/generated-sources/annotations = 1718406228839
-/home/diego/NetBeansProjects/PL/target/apidocs/element-list = 1718406235699
-/home/diego/NetBeansProjects/PL/target/apidocs/type-search-index.zip = 1718406235911
-/home/diego/NetBeansProjects/PL/target/apidocs/deprecated-list.html = 1718406235927
-/home/diego/NetBeansProjects/PL/target/apidocs/index.html = 1718406235931
-/home/diego/NetBeansProjects/PL/target/apidocs/member-search-index.zip = 1718406235911
-/home/diego/NetBeansProjects/PL/target/apidocs/script.js = 1718406235935
-/home/diego/NetBeansProjects/PL/target/apidocs/index-all.html = 1718406235915
-/home/diego/NetBeansProjects/PL/target/apidocs/overview-tree.html = 1718406235883
-/home/diego/NetBeansProjects/PL/target/apidocs/overview-summary.html = 1718406235935
-/home/diego/NetBeansProjects/PL/target/apidocs/stylesheet.css = 1718406235935
-/home/diego/NetBeansProjects/PL/target/apidocs/allclasses.html = 1718406235927
-/home/diego/NetBeansProjects/PL/target/apidocs/jquery-ui.overrides.css = 1718406235951
-/home/diego/NetBeansProjects/PL/target/apidocs/package-search-index.js = 1718406235907
-/home/diego/NetBeansProjects/PL/target/apidocs/package-search-index.zip = 1718406235907
-/home/diego/NetBeansProjects/PL/target/apidocs/allpackages-index.html = 1718406235923
-/home/diego/NetBeansProjects/PL/target/apidocs/constant-values.html = 1718406235755
-/home/diego/NetBeansProjects/PL/target/apidocs/allclasses-index.html = 1718406235919
-/home/diego/NetBeansProjects/PL/target/apidocs/help-doc.html = 1718406235935
-/home/diego/NetBeansProjects/PL/target/apidocs/serialized-form.html = 1718406235771
-/home/diego/NetBeansProjects/PL/target/apidocs/search.js = 1718406235935
-/home/diego/NetBeansProjects/PL/target/apidocs/type-search-index.js = 1718406235907
-/home/diego/NetBeansProjects/PL/target/apidocs/member-search-index.js = 1718406235911
+/home/diego/NetBeansProjects/PL/src/main/java = 1718450259080
+/home/diego/NetBeansProjects/PL/target/generated-sources/annotations = 1718450997151
+/home/diego/NetBeansProjects/PL/target/apidocs/element-list = 1718451002295
+/home/diego/NetBeansProjects/PL/target/apidocs/type-search-index.zip = 1718451002423
+/home/diego/NetBeansProjects/PL/target/apidocs/deprecated-list.html = 1718451002435
+/home/diego/NetBeansProjects/PL/target/apidocs/index.html = 1718451002443
+/home/diego/NetBeansProjects/PL/target/apidocs/member-search-index.zip = 1718451002427
+/home/diego/NetBeansProjects/PL/target/apidocs/script.js = 1718451002447
+/home/diego/NetBeansProjects/PL/target/apidocs/index-all.html = 1718451002427
+/home/diego/NetBeansProjects/PL/target/apidocs/overview-tree.html = 1718451002399
+/home/diego/NetBeansProjects/PL/target/apidocs/overview-summary.html = 1718451002443
+/home/diego/NetBeansProjects/PL/target/apidocs/stylesheet.css = 1718451002447
+/home/diego/NetBeansProjects/PL/target/apidocs/allclasses.html = 1718451002439
+/home/diego/NetBeansProjects/PL/target/apidocs/jquery-ui.overrides.css = 1718451002451
+/home/diego/NetBeansProjects/PL/target/apidocs/package-search-index.js = 1718451002423
+/home/diego/NetBeansProjects/PL/target/apidocs/package-search-index.zip = 1718451002423
+/home/diego/NetBeansProjects/PL/target/apidocs/allpackages-index.html = 1718451002431
+/home/diego/NetBeansProjects/PL/target/apidocs/constant-values.html = 1718451002323
+/home/diego/NetBeansProjects/PL/target/apidocs/allclasses-index.html = 1718451002431
+/home/diego/NetBeansProjects/PL/target/apidocs/help-doc.html = 1718451002443
+/home/diego/NetBeansProjects/PL/target/apidocs/serialized-form.html = 1718451002335
+/home/diego/NetBeansProjects/PL/target/apidocs/search.js = 1718451002447
+/home/diego/NetBeansProjects/PL/target/apidocs/type-search-index.js = 1718451002423
+/home/diego/NetBeansProjects/PL/target/apidocs/member-search-index.js = 1718451002423

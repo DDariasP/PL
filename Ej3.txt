@@ -1,0 +1,3 @@
+/* Ejemplo inventado para comprobar todos los operadores */
+
+Test ::= ( ( 'X' | ( 'Y' )+ ) )? ( 'Z' ( 'Z' | 'X' | 'Y' ) )* ;

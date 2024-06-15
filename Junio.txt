@@ -1,0 +1,20 @@
+Junio
+     |-----Clausura Kleen: '*'
+               |-----Opcionalidad: '|'
+                         |-----Terminal: 'a'
+                         |-----Clausura Kleen: '*'
+                                   |-----Terminal: 'b'
+                                   |-----Terminal: 'b'
+                         |-----Terminal: 'c'
+                              OR
+                         |-----Terminal: 'b'
+                         |-----Clausura Kleen: '*'
+                                   |-----Terminal: 'c'
+                                   |-----Terminal: 'c'
+                         |-----Terminal: 'a'
+                              OR
+                         |-----Terminal: 'c'
+                         |-----Clausura Kleen: '*'
+                                   |-----Terminal: 'a'
+                                   |-----Terminal: 'a'
+                         |-----Terminal: 'b'

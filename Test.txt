@@ -1,0 +1,15 @@
+Test
+     |-----Opcionalidad: '?'
+               |-----Opcionalidad: '|'
+                         |-----Terminal: 'X'
+                              OR
+                         |-----Clausura positiva: '+'
+                                   |-----Terminal: 'Y'
+     |-----Clausura Kleen: '*'
+               |-----Terminal: 'Z'
+               |-----Opcionalidad: '|'
+                         |-----Terminal: 'Z'
+                              OR
+                         |-----Terminal: 'X'
+                              OR
+                         |-----Terminal: 'Y'
