@@ -1,0 +1,440 @@
+
+Ej1.txt
+
+Analizador lexico:
+[Row: 3][Column: 2][Kind: 3] Comment
+[Row: 3][Column: 10][Kind: 5] ::=
+[Row: 3][Column: 14][Kind: 4] 'b'
+[Row: 3][Column: 18][Kind: 4] 'a'
+[Row: 3][Column: 22][Kind: 8] (
+[Row: 3][Column: 24][Kind: 8] (
+[Row: 3][Column: 26][Kind: 8] (
+[Row: 3][Column: 27][Kind: 4] 'a'
+[Row: 3][Column: 30][Kind: 9] )
+[Row: 3][Column: 31][Kind: 10] *
+[Row: 3][Column: 33][Kind: 4] 'o'
+[Row: 3][Column: 37][Kind: 6] |
+[Row: 3][Column: 39][Kind: 4] 'b'
+[Row: 3][Column: 43][Kind: 9] )
+[Row: 3][Column: 45][Kind: 9] )
+[Row: 3][Column: 46][Kind: 10] *
+[Row: 3][Column: 48][Kind: 8] (
+[Row: 3][Column: 49][Kind: 4] 'a'
+[Row: 3][Column: 52][Kind: 9] )
+[Row: 3][Column: 53][Kind: 11] +
+[Row: 3][Column: 55][Kind: 4] 'b'
+[Row: 3][Column: 59][Kind: 7] ;
+[Row: 4][Column: 0][Kind: 0] 
+
+
+Analizador sintactico:
+Correcto.
+
+
+Analizador semantico y AST:
+Comment
+     |-----Terminal: 'b'
+     |-----Terminal: 'a'
+     |-----Clausura Kleen: '*'
+               |-----Alternativa: '|'
+                         |-----Clausura Kleen: '*'
+                                   |-----Terminal: 'a'
+                         |-----Terminal: 'o'
+                              OR
+                         |-----Terminal: 'b'
+     |-----Clausura positiva: '+'
+               |-----Terminal: 'a'
+     |-----Terminal: 'b'
+
+
+Algoritmo de puntos:
+Expresion regular
+ b a ( ( ( a )* o | b ) )* ( a )+ b
+
+Estado 0:
+b => 1
+	 . b a ( ( ( a )* o | b ) )* ( a )+ b 
+
+
+Estado 1:
+a => 2
+	 b . a ( ( ( a )* o | b ) )* ( a )+ b 
+
+
+Estado 2:
+b => 2
+a => 3
+o => 2
+	 b a ( ( ( . a )* o | b ) )* ( a )+ b 
+	 b a ( ( ( a )* . o | b ) )* ( a )+ b 
+	 b a ( ( ( a )* o | . b ) )* ( a )+ b 
+	 b a ( ( ( a )* o | b ) )* ( . a )+ b 
+
+
+Estado 3:
+b => 4
+a => 3
+o => 2
+	 b a ( ( ( a )* . o | b ) )* ( a )+ b 
+	 b a ( ( ( . a )* o | b ) )* ( a )+ b 
+	 b a ( ( ( a )* o | b ) )* ( a )+ . b 
+	 b a ( ( ( a )* o | b ) )* ( . a )+ b 
+
+
+Estado 4:
+	 b a ( ( ( a )* o | b ) )* ( a )+ b . 
+
+
+Fichero Comment.java:
+public class Comment {
+
+    public int transition(int state, char symbol) {
+	switch(state) {
+	  case 0:
+	      if(symbol == 'b') return 1;
+	      return -1;
+	  case 1:
+	      if(symbol == 'a') return 2;
+	      return -1;
+	  case 2:
+	      if(symbol == 'b') return 2;
+	      if(symbol == 'a') return 3;
+	      if(symbol == 'o') return 2;
+	      return -1;
+	  case 3:
+	      if(symbol == 'b') return 4;
+	      if(symbol == 'a') return 3;
+	      if(symbol == 'o') return 2;
+	      return -1;
+	  case 4:
+	      return -1;
+	  default:
+	      return -1;
+	  }
+    }
+
+    public boolean isFinal(int state) {
+	switch(state) {
+	  case 0: return false;
+	  case 1: return false;
+	  case 2: return false;
+	  case 3: return false;
+	  case 4: return true;
+	  default: return false;
+	}
+    }
+
+}
+
+------------------------------------------------------------------------
+
+Ej2.txt
+
+Analizador lexico:
+[Row: 2][Column: 0][Kind: 3] Junio
+[Row: 2][Column: 6][Kind: 5] ::=
+[Row: 2][Column: 10][Kind: 8] (
+[Row: 2][Column: 14][Kind: 8] (
+[Row: 2][Column: 18][Kind: 4] 'a'
+[Row: 2][Column: 22][Kind: 8] (
+[Row: 2][Column: 24][Kind: 4] 'b'
+[Row: 2][Column: 28][Kind: 4] 'b'
+[Row: 2][Column: 32][Kind: 9] )
+[Row: 2][Column: 33][Kind: 10] *
+[Row: 2][Column: 35][Kind: 4] 'c'
+[Row: 2][Column: 41][Kind: 6] |
+[Row: 2][Column: 45][Kind: 4] 'b'
+[Row: 2][Column: 49][Kind: 8] (
+[Row: 2][Column: 51][Kind: 4] 'c'
+[Row: 2][Column: 55][Kind: 4] 'c'
+[Row: 2][Column: 59][Kind: 9] )
+[Row: 2][Column: 60][Kind: 10] *
+[Row: 2][Column: 62][Kind: 4] 'a'
+[Row: 2][Column: 68][Kind: 6] |
+[Row: 2][Column: 72][Kind: 4] 'c'
+[Row: 2][Column: 76][Kind: 8] (
+[Row: 2][Column: 78][Kind: 4] 'a'
+[Row: 2][Column: 82][Kind: 4] 'a'
+[Row: 2][Column: 86][Kind: 9] )
+[Row: 2][Column: 87][Kind: 10] *
+[Row: 2][Column: 89][Kind: 4] 'b'
+[Row: 2][Column: 95][Kind: 9] )
+[Row: 2][Column: 99][Kind: 9] )
+[Row: 2][Column: 100][Kind: 10] *
+[Row: 2][Column: 102][Kind: 7] ;
+[Row: 3][Column: 0][Kind: 0] 
+
+
+Analizador sintactico:
+Correcto.
+
+
+Analizador semantico y AST:
+Junio
+     |-----Clausura Kleen: '*'
+               |-----Alternativa: '|'
+                         |-----Terminal: 'a'
+                         |-----Clausura Kleen: '*'
+                                   |-----Terminal: 'b'
+                                   |-----Terminal: 'b'
+                         |-----Terminal: 'c'
+                              OR
+                         |-----Terminal: 'b'
+                         |-----Clausura Kleen: '*'
+                                   |-----Terminal: 'c'
+                                   |-----Terminal: 'c'
+                         |-----Terminal: 'a'
+                              OR
+                         |-----Terminal: 'c'
+                         |-----Clausura Kleen: '*'
+                                   |-----Terminal: 'a'
+                                   |-----Terminal: 'a'
+                         |-----Terminal: 'b'
+
+
+Algoritmo de puntos:
+Expresion regular
+ ( ( a ( b b )* c | b ( c c )* a | c ( a a )* b ) )*
+
+Estado 0:
+a => 1
+b => 2
+c => 3
+	 ( ( . a ( b b )* c | b ( c c )* a | c ( a a )* b ) )* 
+	 ( ( a ( b b )* c | . b ( c c )* a | c ( a a )* b ) )* 
+	 ( ( a ( b b )* c | b ( c c )* a | . c ( a a )* b ) )* 
+	 ( ( a ( b b )* c | b ( c c )* a | c ( a a )* b ) )* . 
+
+
+Estado 1:
+b => 4
+c => 0
+	 ( ( a ( . b b )* c | b ( c c )* a | c ( a a )* b ) )* 
+	 ( ( a ( b b )* . c | b ( c c )* a | c ( a a )* b ) )* 
+
+
+Estado 2:
+a => 0
+c => 5
+	 ( ( a ( b b )* c | b ( . c c )* a | c ( a a )* b ) )* 
+	 ( ( a ( b b )* c | b ( c c )* . a | c ( a a )* b ) )* 
+
+
+Estado 3:
+a => 6
+b => 0
+	 ( ( a ( b b )* c | b ( c c )* a | c ( . a a )* b ) )* 
+	 ( ( a ( b b )* c | b ( c c )* a | c ( a a )* . b ) )* 
+
+
+Estado 4:
+b => 1
+	 ( ( a ( b . b )* c | b ( c c )* a | c ( a a )* b ) )* 
+
+
+Estado 5:
+c => 2
+	 ( ( a ( b b )* c | b ( c . c )* a | c ( a a )* b ) )* 
+
+
+Estado 6:
+a => 3
+	 ( ( a ( b b )* c | b ( c c )* a | c ( a . a )* b ) )* 
+
+
+Fichero Junio.java:
+public class Junio {
+
+    public int transition(int state, char symbol) {
+	switch(state) {
+	  case 0:
+	      if(symbol == 'a') return 1;
+	      if(symbol == 'b') return 2;
+	      if(symbol == 'c') return 3;
+	      return -1;
+	  case 1:
+	      if(symbol == 'b') return 4;
+	      if(symbol == 'c') return 0;
+	      return -1;
+	  case 2:
+	      if(symbol == 'a') return 0;
+	      if(symbol == 'c') return 5;
+	      return -1;
+	  case 3:
+	      if(symbol == 'a') return 6;
+	      if(symbol == 'b') return 0;
+	      return -1;
+	  case 4:
+	      if(symbol == 'b') return 1;
+	      return -1;
+	  case 5:
+	      if(symbol == 'c') return 2;
+	      return -1;
+	  case 6:
+	      if(symbol == 'a') return 3;
+	      return -1;
+	  default:
+	      return -1;
+	  }
+    }
+
+    public boolean isFinal(int state) {
+	switch(state) {
+	  case 0: return true;
+	  case 1: return false;
+	  case 2: return false;
+	  case 3: return false;
+	  case 4: return false;
+	  case 5: return false;
+	  case 6: return false;
+	  default: return false;
+	}
+    }
+
+}
+
+------------------------------------------------------------------------
+
+Ej3.txt
+
+Analizador lexico:
+[Row: 2][Column: 0][Kind: 3] Test
+[Row: 2][Column: 5][Kind: 5] ::=
+[Row: 2][Column: 9][Kind: 4] 'a'
+[Row: 2][Column: 13][Kind: 8] (
+[Row: 2][Column: 15][Kind: 8] (
+[Row: 2][Column: 17][Kind: 4] 'b'
+[Row: 2][Column: 21][Kind: 6] |
+[Row: 2][Column: 23][Kind: 8] (
+[Row: 2][Column: 25][Kind: 4] 'o'
+[Row: 2][Column: 29][Kind: 9] )
+[Row: 2][Column: 30][Kind: 11] +
+[Row: 2][Column: 32][Kind: 9] )
+[Row: 2][Column: 34][Kind: 9] )
+[Row: 2][Column: 35][Kind: 12] ?
+[Row: 2][Column: 37][Kind: 8] (
+[Row: 2][Column: 39][Kind: 4] 'a'
+[Row: 2][Column: 43][Kind: 8] (
+[Row: 2][Column: 45][Kind: 4] 'a'
+[Row: 2][Column: 49][Kind: 6] |
+[Row: 2][Column: 51][Kind: 4] 'b'
+[Row: 2][Column: 55][Kind: 6] |
+[Row: 2][Column: 57][Kind: 4] 'o'
+[Row: 2][Column: 61][Kind: 9] )
+[Row: 2][Column: 63][Kind: 9] )
+[Row: 2][Column: 64][Kind: 10] *
+[Row: 2][Column: 66][Kind: 7] ;
+[Row: 3][Column: 0][Kind: 0] 
+
+
+Analizador sintactico:
+Correcto.
+
+
+Analizador semantico y AST:
+Test
+     |-----Terminal: 'a'
+     |-----Opcionalidad: '?'
+               |-----Alternativa: '|'
+                         |-----Terminal: 'b'
+                              OR
+                         |-----Clausura positiva: '+'
+                                   |-----Terminal: 'o'
+     |-----Clausura Kleen: '*'
+               |-----Terminal: 'a'
+               |-----Alternativa: '|'
+                         |-----Terminal: 'a'
+                              OR
+                         |-----Terminal: 'b'
+                              OR
+                         |-----Terminal: 'o'
+
+
+Algoritmo de puntos:
+Expresion regular
+ a ( ( b | ( o )+ ) )? ( a ( a | b | o ) )*
+
+Estado 0:
+a => 1
+	 . a ( ( b | ( o )+ ) )? ( a ( a | b | o ) )* 
+
+
+Estado 1:
+a => 2
+b => 3
+o => 4
+	 a ( ( . b | ( o )+ ) )? ( a ( a | b | o ) )* 
+	 a ( ( b | ( . o )+ ) )? ( a ( a | b | o ) )* 
+	 a ( ( b | ( o )+ ) )? ( . a ( a | b | o ) )* 
+	 a ( ( b | ( o )+ ) )? ( a ( a | b | o ) )* . 
+
+
+Estado 2:
+a => 3
+b => 3
+o => 4
+	 a ( ( b | ( o )+ ) )? ( a ( . a | b | o ) )* 
+	 a ( ( b | ( . o )+ ) )? ( a ( a | b | o ) )* 
+	 a ( ( b | ( o )+ ) )? ( a ( a | . b | o ) )* 
+	 a ( ( b | ( o )+ ) )? ( a ( a | b | . o ) )* 
+
+
+Estado 3:
+a => 2
+	 a ( ( b | ( o )+ ) )? ( a ( a | b | o ) )* . 
+	 a ( ( b | ( o )+ ) )? ( . a ( a | b | o ) )* 
+
+
+Estado 4:
+a => 2
+o => 4
+	 a ( ( b | ( o )+ ) )? ( . a ( a | b | o ) )* 
+	 a ( ( b | ( o )+ ) )? ( a ( a | b | o ) )* . 
+	 a ( ( b | ( . o )+ ) )? ( a ( a | b | o ) )* 
+
+
+Fichero Test.java:
+public class Test {
+
+    public int transition(int state, char symbol) {
+	switch(state) {
+	  case 0:
+	      if(symbol == 'a') return 1;
+	      return -1;
+	  case 1:
+	      if(symbol == 'a') return 2;
+	      if(symbol == 'b') return 3;
+	      if(symbol == 'o') return 4;
+	      return -1;
+	  case 2:
+	      if(symbol == 'a') return 3;
+	      if(symbol == 'b') return 3;
+	      if(symbol == 'o') return 4;
+	      return -1;
+	  case 3:
+	      if(symbol == 'a') return 2;
+	      return -1;
+	  case 4:
+	      if(symbol == 'a') return 2;
+	      if(symbol == 'o') return 4;
+	      return -1;
+	  default:
+	      return -1;
+	  }
+    }
+
+    public boolean isFinal(int state) {
+	switch(state) {
+	  case 0: return false;
+	  case 1: return true;
+	  case 2: return false;
+	  case 3: return true;
+	  case 4: return true;
+	  default: return false;
+	}
+    }
+
+}
+
+------------------------------------------------------------------------
+

@@ -38,6 +38,10 @@ public class Main {
      * @throws prole.sintactico.SintaxException Error sintactico.
      */
     public static void main(String[] args) throws IOException, SintaxException {
+        //Redirige la salida en consola a la pantalla
+        JFrame frame = new JFrame("Output");
+        Sout.run(frame);
+
         //Recorre la lista de ejemplos
         for (int i = 0; i < ejemplo.length; i++) {
 
