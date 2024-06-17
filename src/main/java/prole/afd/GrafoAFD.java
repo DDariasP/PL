@@ -42,7 +42,23 @@ public class GrafoAFD {
         for (Map.Entry<String, Transicion> entry : afd.tablaT.entrySet()) {
             Estado ori = entry.getValue().origen;
             Estado dest = entry.getValue().destino;
-            grafo.addEdge(entry.getValue().toString(), ori.nombre, dest.nombre, EdgeType.DIRECTED);
+            String symt = entry.getValue().simbolo;
+            String edge = "<" + ori.nombre + ",{" + symt;
+            //Combina las transiciones con simbolos distintos pero
+            //origen y destino iguales en una sola arista
+            for (Map.Entry<String, Transicion> subentry : afd.tablaT.entrySet()) {
+                Estado o = subentry.getValue().origen;
+                Estado d = subentry.getValue().destino;
+                String st = subentry.getValue().simbolo;
+                if (ori.nombre.equals(o.nombre) && dest.nombre.equals(d.nombre)) {
+                    if (!symt.equals(st)) {
+                        edge = edge + "," + st;
+                    }
+                }
+            }
+            edge = edge + "}," + dest.nombre + ">";
+            //Añade la arista combinada
+            grafo.addEdge(edge, ori.nombre, dest.nombre, EdgeType.DIRECTED);
         }
 
         //Crea los renderers del grafo
