@@ -1,12 +1,12 @@
 package prole.puntos;
 
-import prole.ast.*;
 import prole.lexico.*;
+import prole.ast.*;
 import prole.afd.*;
 import java.util.ArrayList;
 
 /**
- * Algoritmo de transformación de expresiones regulares en AFD
+ * Algoritmo de transformación de expresiones regulares en AFD.
  *
  * @author Diego Francisco Darias Pino
  *
@@ -62,15 +62,14 @@ public class MyPuntos implements MyConstants {
         //Añade el Estado inicial a la lista del AFD
         listaAFD.add(s0);
 
-        //Avanza el punto
+        //Avanza el punto de forma sucesiva
         transicion(listaST, pilaS, listaAFD);
 
-        //Crea el AFD
-        //Nombre
+        //Nombre del AFD
         String nom = ast.arbol.getNombre();
         for (int i = 0; i < listaAFD.size(); i++) {
             Estado s = listaAFD.get(i);
-            //Le da nombre a cada estado
+            //Le da nombre a cada Estado
             s.nombre = Integer.toString(i);
             boolean encontrado = false;
             int pos = 0;
@@ -84,28 +83,31 @@ public class MyPuntos implements MyConstants {
                 pos++;
             }
         }
-        
+
         //Crea el AFD
-        AFD afd = new AFD(nom,listaAFD);
+        AFD afd = new AFD(nom, listaAFD);
 
         //Devuelve el AFD
         return afd;
     }
 
-    //Algoritmo de avanzar el punto
+    //Algoritmo para avanzar el punto
     private static void transicion(ArrayList<String> listaST, ArrayList<Estado> pilaS, ArrayList<Estado> listaAFD) {
         //Mientras haya Estado en la pila
         while (!pilaS.isEmpty()) {
+            
             //Toma el Estado cima
             Estado cima = pilaS.get(0);
             pilaS.remove(0);
             //Inicializa el vector destinos del Estado cima
             cima.destinos = new Tupla[listaST.size()];
+            
             //Para cada simbolo terminal
             for (int numSym = 0; numSym < listaST.size(); numSym++) {
                 String symST = listaST.get(numSym);
                 //Crea un proto-Estado vacio
                 ArrayList<Expresion> proto = new ArrayList<>();
+                
                 //Para cada Expresion del Estado cima
                 for (int i = 0; i < cima.listaExp.size(); i++) {
                     Expresion exp = cima.listaExp.get(i);
@@ -127,9 +129,11 @@ public class MyPuntos implements MyConstants {
                     }
                     //Si esta al final, su proto-Estado queda vacio (no transiciona)
                 }
+                
                 //Cuando ha comprobado todas las Expresion para un simbolo
                 //comprueba si el proto-Estado resultado esta vacio
                 if (!proto.isEmpty()) {
+                    
                     //Comprueba si existe un Estado igual al proto-Estado resultante
                     //en la lista del AFD
                     int pos = Estado.contiene(listaAFD, proto);

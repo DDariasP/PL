@@ -1,7 +1,7 @@
 package prole.lexico;
 
 /**
- * Interfaz que define los codigos de las diferentes categorias lexicas
+ * Interfaz que define los codigos de las diferentes categorias lexicas.
  *
  * * @author Diego Francisco Darias Pino
  *
@@ -60,7 +60,7 @@ public interface MyConstants {
     public int RPAREN = 9;
 
     /**
-     * Clausura "*"
+     * Clausura Kleen "*"
      */
     public int STAR = 10;
 

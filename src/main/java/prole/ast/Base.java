@@ -3,16 +3,17 @@ package prole.ast;
 import java.util.ArrayList;
 
 /**
- * Clase para los simbolos no terminales
+ * Simbolos no terminales.
  *
  * @author Diego Francisco Darias Pino
  */
 public class Base implements INodo {
 
-    private static boolean terminal = true;
+    private static final boolean terminal = true;
     private int ID;
     private String nombre;
 
+    //Contructor vacio
     public Base() {
         //
     }

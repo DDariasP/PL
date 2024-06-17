@@ -1,7 +1,7 @@
 package prole.afd;
 
 /**
- * Tipo de datos para manejar las transiciones del autómata.
+ * Tipo de datos para definir las transiciones del AFD.
  *
  * @author Diego Francisco Darias Pino
  */

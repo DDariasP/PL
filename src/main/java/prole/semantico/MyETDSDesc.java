@@ -1,18 +1,13 @@
 package prole.semantico;
 
-import prole.ast.Base;
-import prole.ast.INodo;
-import prole.ast.AST;
-import prole.ast.Operador;
-import prole.sintactico.SintaxException;
-import prole.lexico.MyConstants;
-import prole.lexico.Token;
-import prole.lexico.MyLexer;
+import prole.lexico.*;
+import prole.sintactico.*;
+import prole.ast.*;
 import java.io.File;
 import java.io.IOException;
 
 /**
- * Analizador semantico basado ETDS descendente
+ * Analizador semantico basado ETDS descendente.
  *
  * @author Diego Francisco Darias Pino
  *
@@ -20,22 +15,22 @@ import java.io.IOException;
 public class MyETDSDesc implements MyConstants {
 
     /**
-     * Analizador lexico
+     * Analizador lexico.
      */
     private MyLexer lexer;
 
     /**
-     * Siguiente token de la cadena de entrada
+     * Siguiente token de la cadena de entrada.
      */
     private Token nextToken;
 
     /*
-     * Arbol Sintactico Abstracto
+     * Arbol Sintactico Abstracto.
      */
     private AST ast;
 
     /**
-     * Metodo de analisis de un fichero
+     * Metodo de analisis de un fichero.
      *
      * @param file Fichero a analizar.
      * @return Resultado del analisis semántico.

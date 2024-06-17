@@ -3,8 +3,8 @@ package prole.puntos;
 import java.util.ArrayList;
 
 /**
- * Clase que define las reglas de los operadores sobre expresiones regulares en
- * notacion BNF. Todas concluyen haciendo la clausura lambda de su resultado
+ * Define las reglas de los operadores sobre expresiones regulares en notacion
+ * BNF. Todas concluyen haciendo la clausura lambda de su resultado.
  *
  * @author Diego Francisco Darias Pino
  */

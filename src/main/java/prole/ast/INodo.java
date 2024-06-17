@@ -3,7 +3,7 @@ package prole.ast;
 import java.util.ArrayList;
 
 /**
- * Interfaz que define un nodo generico del arbol
+ * Interfaz que define un nodo generico del arbol.
  *
  * @author Diego Francisco Darias Pino
  */

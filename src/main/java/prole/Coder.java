@@ -1,13 +1,14 @@
 package prole;
 
-import prole.puntos.*;
 import prole.afd.*;
+import prole.puntos.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
 /**
+ * Crea un archivo .java a partir del AFD.
  *
  * @author Diego Francisco Darias Pino
  */
@@ -15,9 +16,10 @@ public class Coder {
 
     public static void crearJAVA(AFD afd) {
         try {
+            //Crea el archivo
             File java = new File(afd.nombre + ".java");
             java.createNewFile();
-
+            //Escribe el codigo
             FileWriter writer = new FileWriter(afd.nombre + ".java");
             String output = "public class " + afd.nombre + " {\n\n";
             writer.write(output);

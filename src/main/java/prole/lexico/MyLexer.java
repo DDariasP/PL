@@ -3,7 +3,7 @@ package prole.lexico;
 import java.io.*;
 
 /**
- * Clase que desarrolla mi analizador lexico
+ * Desarrolla mi analizador lexico.
  *
  * @author Diego Francisco Darias Pino
  *
@@ -11,11 +11,11 @@ import java.io.*;
 public class MyLexer extends Lexer implements MyConstants {
 
     /**
-     * Transiciones del automata del analizador lexico
+     * Transiciones del automata de mi analizador lexico.
      *
-     * @param state Estado inicial
-     * @param symbol Simbolo del alfabeto
-     * @return Estado final
+     * @param state Estado inicial.
+     * @param symbol Simbolo del alfabeto.
+     * @return Estado final.
      */
     @Override
     protected int transition(int state, char symbol) {
@@ -136,10 +136,10 @@ public class MyLexer extends Lexer implements MyConstants {
     }
 
     /**
-     * Verifica si un estado es final
+     * Verifica si un estado es final.
      *
-     * @param state Estado
-     * @return true, si el estado es final
+     * @param state Estado.
+     * @return true, Si el estado es final.
      */
     @Override
     protected boolean isFinal(int state) {
@@ -166,11 +166,11 @@ public class MyLexer extends Lexer implements MyConstants {
      * encontrado. Devuelve null si la accion asociada al estado final es omitir
      * (SKIP).
      *
-     * @param state Estado final alcanzado
-     * @param lexeme Lexema reconocido
-     * @param row Fila de comienzo del lexema
-     * @param column Columna de comienzo del lexema
-     * @return Componente lexico correspondiente al estado final y al lexema
+     * @param state Estado final alcanzado.
+     * @param lexeme Lexema reconocido.
+     * @param row Fila de comienzo del lexema.
+     * @param column Columna de comienzo del lexema.
+     * @return Componente lexico correspondiente al estado final y al lexema.
      */
     @Override
     protected Token getToken(int state, String lexeme, int row, int column) {
@@ -205,10 +205,10 @@ public class MyLexer extends Lexer implements MyConstants {
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param file Nombre del fichero fuente
-     * @throws IOException En caso de problemas con el flujo de entrada
+     * @param file Nombre del fichero fuente.
+     * @throws IOException En caso de problemas con el flujo de entrada.
      */
     public MyLexer(File file) throws IOException {
         super(file);

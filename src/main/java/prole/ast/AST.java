@@ -1,12 +1,12 @@
 package prole.ast;
 
-import prole.lexico.MyConstants;
+import prole.lexico.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Definicion de un Arbol Sintactico Abstracto
+ * Definicion de un Arbol Sintactico Abstracto.
  *
  * @author Diego Francisco Darias Pino
  */
@@ -16,11 +16,11 @@ public class AST {
     public INodo arbol;
 
     public AST() {
-        //Raiz de la subclase Operador de la interfaz INodo
+        //Raiz es de la subclase Operador de la interfaz INodo
         arbol = new Operador();
     }
 
-    //Escribe el arbol en un archivo txt
+    //Escribe el arbol en un archivo .txt
     public void print() {
         try {
             //Crea el archivo
@@ -79,7 +79,7 @@ public class AST {
         return output;
     }
 
-    //Pinta los operadores
+    //Pinta los operadores segun su tipo
     private static String pintarOperacion(INodo h, int nivel) {
         String output;
         switch (h.getNombre()) {
@@ -97,7 +97,7 @@ public class AST {
                 break;
             case "(":
             case ")":
-                output = "|-----Opcionalidad: '|'";
+                output = "|-----Alternativa: '|'";
                 break;
             default:
                 throw new AssertionError();

@@ -1,13 +1,12 @@
 package prole.puntos;
 
-import prole.ast.INodo;
-import prole.ast.AST;
+import prole.ast.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Clase que define las expresiones a analizar
+ * Define las expresiones a analizar.
  *
  * @author Diego Francisco Darias Pino
  */
@@ -231,18 +230,18 @@ public class Expresion {
     }
 
     //Muestra los operadores sin sus caracteres de control
-    public static String mostrar(Expresion e) {
+    public String mostrar() {
         String output = " ";
-        for (int i = 0; i < e.nodos.size(); i++) {
-            Tupla tp = e.nodos.get(i);
+        for (int i = 0; i < nodos.size(); i++) {
+            Tupla tp = nodos.get(i);
             //Coloca el punto delante del simbolo al que marca
-            if (i == e.posP) {
+            if (i == posP) {
                 output = output + ". ";
             }
             output = output + tp.mostrar() + " ";
         }
         //Coloca el punto al final si no marca a ningun simbolo
-        if (e.posP == e.nodos.size()) {
+        if (posP == nodos.size()) {
             output = output + ". ";
         }
         return output;

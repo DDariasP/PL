@@ -1,13 +1,11 @@
 package prole.sintactico;
 
-import prole.lexico.MyConstants;
-import prole.lexico.Token;
-import prole.lexico.MyLexer;
+import prole.lexico.*;
 import java.io.File;
 import java.io.IOException;
 
 /**
- * Analizador sintactico basado en una gramatica BNF y LL(1)
+ * Analizador sintactico basado en una gramatica BNF y LL(1).
  *
  * @author Diego Francisco Darias Pino
  *
@@ -15,19 +13,19 @@ import java.io.IOException;
 public class MyParser implements MyConstants {
 
     /**
-     * Analizador lexico
+     * Analizador lexico.
      */
     private MyLexer lexer;
 
     /**
-     * Siguiente token de la cadena de entrada
+     * Siguiente token de la cadena de entrada.
      */
     private Token nextToken;
 
     /**
-     * Metodo de analisis de un fichero
+     * Metodo de analisis de un fichero.
      *
-     * @param file Fichero a analizar
+     * @param file Fichero a analizar.
      * @return Resultado del analisis sintactico.
      * @throws java.io.IOException Error en File.
      * @throws prole.sintactico.SintaxException Error sintáctico.
@@ -46,10 +44,10 @@ public class MyParser implements MyConstants {
     }
 
     /**
-     * Metodo que consume un token de la cadena de entrada
+     * Metodo que consume un token de la cadena de entrada.
      *
-     * @param kind Tipo de token a consumir
-     * @throws SintaxException Si el tipo no coincide con el token
+     * @param kind Tipo de token a consumir.
+     * @throws SintaxException Si el tipo no coincide con el token.
      */
     private void match(int kind) throws SintaxException {
         if (nextToken.getKind() == kind) {

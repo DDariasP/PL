@@ -1,12 +1,12 @@
 package prole.puntos;
 
-import prole.ast.Operador;
+import prole.ast.*;
+import prole.afd.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import prole.afd.Estado;
 
 /**
- * Clase para la informacion de cada token
+ * Agrupa la informacion de cada token en un objeto.
  *
  * @author Diego Francisco Darias Pino
  */
@@ -159,11 +159,11 @@ public class Tupla {
                     int contR = 0;
                     Tupla sig = array[j];
                     switch (sig.sym) {
-                        //Suma las mitades izquierdas
+                        //Cuenta las mitades izquierdas
                         case "|(":
                             contL++;
                             break;
-                        //Suma las mitades derechas
+                        //Cuenta las mitades derechas
                         case ")|":
                             contR++;
                             break;
@@ -189,7 +189,7 @@ public class Tupla {
         }
     }
 
-    //Para cada tupla muestra su simbolo y posicion, y el simbolo y posicion
+    //Para cada Tupla muestra su simbolo y posicion, y el simbolo y posicion
     //de su mitad complementaria
     //Las partes de OR muestran el simbolo y posicion de todas sus partes
     @Override

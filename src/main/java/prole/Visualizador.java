@@ -5,7 +5,7 @@ import javax.swing.*;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 
 /**
- * Clase que muestra el autómata paso a paso.
+ * Muestra el reconocimiento de una cadena por el AFD paso a paso.
  *
  * @author Diego Francisco Darias Pino
  */
@@ -22,27 +22,20 @@ public class Visualizador extends JFrame {
     /**
      * Constructor.
      *
-     * @param a Autómata.
+     * @param a AFD.
      * @param c String con la cadena de símbolos a comprobar.
+     * @param g Ventana para mostrar el grafo.
      */
-    public Visualizador(AFD a, String c) {
-        //inicializar los atributos
+    public Visualizador(AFD a, String c, JFrame g) {
+        //Inicializa los atributos
         pos = 0;
         cadena = c;
         tokens = c.split(" ");
-        acepta = false;
         afd = a;
-        grafo = GrafoAFD.crear(afd);
-
-        //crear el JFrame y mostrar el grafo
-        gFrame = new JFrame(afd.nombre);
-        gFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        gFrame.add(grafo);
-        gFrame.setBounds(600, 50, 800, 800);
-        gFrame.setVisible(true);
+        gFrame = g;
         initComponents();
 
-        //actualizar la etiqueta cadena
+        //Actualiza la etiqueta cadena
         labelString.setText("Cadena: '" + c + "'");
     }
 
@@ -112,31 +105,40 @@ public class Visualizador extends JFrame {
      * @param evt Acción sobre el botón.
      */
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
-        //crear el grafo
+        //Crea el grafo
         JPanel panel = new JPanel();
+        //Si no ha consumido todos los simbolos o llegado a uno no valido
         if (pos >= 0 && pos < tokens.length) {
+            //Toma el siguiente caracter
             String carac = tokens[pos];
+            //Comprueva si es consumido por el AFD
             acepta = afd.paso(carac);
+            //Si es asi
             if (acepta) {
+                //Avanza en la cadena de entrada
                 pos++;
+                //Actualiza las etiquetas de la ventana
                 labelChar.setText("Último carácter: '" + carac + "'");
                 labelTran.setText("Última transición: " + afd.ultimaT);
-                //muestra el grafo
+                //Muestra el cambio de estado
                 grafo = GrafoAFD.crear(afd);
                 panel.add(grafo);
                 gFrame.add(grafo);
                 gFrame.setVisible(true);
             } else {
+                //Marca la cadena como rechazada
                 pos = -1;
             }
         } else {
+            //Si se ha consumido la cadena completa o se ha rechazado
             String mensaje;
+            //Muestra un mensaje con el resultado
             if (acepta && pos == tokens.length && afd.verde.ultimo) {
                 mensaje = "Cadena '" + cadena + "' aceptada";
             } else {
                 mensaje = "Cadena '" + cadena + "' rechazada";
             }
-            //popup que informa sobre el reconocimiento de la cadena
+            //Pop-up con el mensaje
             JOptionPane.showMessageDialog(this, mensaje, "Reconocer cadena", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonNextActionPerformed

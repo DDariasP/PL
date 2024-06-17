@@ -1,11 +1,10 @@
 package prole.afd;
 
+import prole.puntos.*;
 import java.util.ArrayList;
-import prole.puntos.Expresion;
-import prole.puntos.Tupla;
 
 /**
- * Clase que define los estados del AFD
+ * Define los estados del AFD.
  *
  * @author Diego Francisco Darias Pino
  */
@@ -26,7 +25,7 @@ public class Estado {
 
     //Estado inicial
     public Estado(Expresion exp0) {
-        nombre = "s0";
+        nombre = "0";
         listaExp = new ArrayList<>();
         listaExp.add(exp0);
         destinos = new Tupla[0];
@@ -41,17 +40,20 @@ public class Estado {
         ultimo = false;
     }
 
-    //Comprueba que no exista un Estado igual al proto-Estado en la lista
+    //Comprueba que no exista un Estado igual al proto-Estado en la del AFD
     public static int contiene(ArrayList<Estado> listaAFD, ArrayList<Expresion> proto) {
         int contiene = -1;
         int pos = 0;
         while (contiene == -1 && pos < listaAFD.size()) {
             Estado s = listaAFD.get(pos);
+            //Si el Estado y el proto-Estado tienen la misma lista de Expresion
             if (Expresion.sonIguales(s.listaExp, proto)) {
+                //Son iguales
                 contiene = pos;
             }
             pos++;
         }
+        //Devuelve la posicion del Estado coincidente si lo hay
         return contiene;
     }
 
@@ -67,7 +69,7 @@ public class Estado {
             }
         }
         for (int i = 0; i < listaExp.size(); i++) {
-            output = output + "\t" + Expresion.mostrar(listaExp.get(i)) + "\n";
+            output = output + "\t" + listaExp.get(i).mostrar() + "\n";
         }
         return output;
     }

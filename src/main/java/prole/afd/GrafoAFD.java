@@ -1,76 +1,84 @@
 package prole.afd;
 
+import java.awt.*;
+import java.util.Map;
 import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
-import java.awt.*;
-import java.util.Map;
 
 /**
  * Convierte un AFD en un grafo dirigido que puede visualizarse mediante la
- * librería JUNG.
+ * librería de licencia gratuita JUNG.
  *
  * @author Diego Francisco Darias Pino
  */
 public class GrafoAFD {
 
     /**
-     * Crea el grafo dirigido.
+     * Crea el grafo dirigido del AFD.
      *
-     * @param afd Autómata que es leído.
+     * @param afd AFD leído.
      * @return Grafo dirigido resultante.
      */
     public static VisualizationViewer<String, String> crear(AFD afd) {
-        //crear un grafo dirigido vacío
+        //Crea un grafo dirigido vacio
         DirectedSparseGraph<String, String> grafo = new DirectedSparseGraph<>();
 
-        //añadir los vértices
+        //Añade los vertices
+        //Vertice ficticio que representa el punto de entrada del AFD
         grafo.addVertex("inicio");
+        //Resto de vertices/Estado
         for (Map.Entry<String, Estado> entry : afd.tablaS.entrySet()) {
             grafo.addVertex(entry.getKey());
         }
 
-        //añadir las aristas
+        //Añade las aristas
+        //Arista ficticia que representa la flecha de entrada del AFD
         grafo.addEdge("", "inicio", afd.inicial.nombre, EdgeType.DIRECTED);
-        //todas las transiciones
+        //Resto de aristas/Transicion
         for (Map.Entry<String, Transicion> entry : afd.tablaT.entrySet()) {
             Estado ori = entry.getValue().origen;
             Estado dest = entry.getValue().destino;
             grafo.addEdge(entry.getValue().toString(), ori.nombre, dest.nombre, EdgeType.DIRECTED);
         }
 
-        //crear los visualizadores
+        //Crea los renderers del grafo
         VisualizationViewer<String, String> vv = new VisualizationViewer<>(new CircleLayout(grafo));
         vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
         vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller());
 
-        //características de los vértices
-        //posición
+        //Caracteristicas de los vertices
+        //Posicion
         vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
-        //forma y tamaño
+        //Forma y Tamaño
         vv.getRenderContext().setVertexShapeTransformer(vertex -> {
             Estado s = afd.tablaS.get(vertex);
             if (s != null && afd.esFinal(s)) {
+                //Vertices finales cuadrados
                 return new java.awt.geom.Rectangle2D.Double(-10, -10, 40, 40);
             } else {
+                //Resto de vertices circulares
                 return new java.awt.geom.Ellipse2D.Double(-10, -10, 40, 40);
             }
         });
-        //color
+        //Color
         vv.getRenderContext().setVertexFillPaintTransformer(vertex -> {
+            //Vertice ficticio blanco
             if (vertex.equals("inicio")) {
-                return Color.WHITE; //estado inicial en blanco
+                return Color.WHITE;
+                //Vertice actual verde
             } else if (afd.verde.nombre.equals(vertex)) {
-                return Color.GREEN; //estado actual en verde
+                return Color.GREEN;
+                //Resto de vertices azules
             } else {
-                return Color.CYAN; //estados en cyan
+                return Color.CYAN;
             }
         });
 
-        //devolver el grafo
+        //Devuelve el grafo creado
         return vv;
     }
 

@@ -1,10 +1,10 @@
 package prole.ast;
 
-import prole.lexico.MyConstants;
+import prole.lexico.*;
 import java.util.ArrayList;
 
 /**
- * Clase para los operadores y el nodo raiz
+ * Operadores y nodo raiz.
  *
  * @author Diego Francisco Darias Pino
  */
@@ -13,11 +13,12 @@ public class Operador implements INodo {
     //Lista de simbolos de operadores
     public static String[] lista
             = {"*(", ")*", "+(", ")+", "?(", ")?", "|(", "|", ")|"};
-    private static boolean terminal = false;
+    private static final boolean terminal = false;
     private int ID;
     private String nombre;
     private ArrayList<INodo> hijos;
 
+    //Constructor generico
     public Operador() {
         hijos = new ArrayList<>();
     }

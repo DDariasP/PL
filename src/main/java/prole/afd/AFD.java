@@ -30,6 +30,7 @@ public class AFD {
         verde = listaS.get(0);
         tablaS = new HashMap<>();
         tablaT = new HashMap<>();
+        //Usa tablas hash para almacenar estados y transiciones
         for (int i = 0; i < listaS.size(); i++) {
             Estado s = listaS.get(i);
             tablaS.put(s.nombre, s);
@@ -47,21 +48,23 @@ public class AFD {
      * Comprueba si un estado es final.
      *
      * @param s Estado a comprobar.
-     * @return true si es final o false en caso contrario.
+     * @return true Si es final o false en caso contrario.
      */
     public boolean esFinal(Estado s) {
         return s.ultimo;
     }
 
     /**
-     * Comprueba paso a paso si el autómata reconoce o no la cadena.
+     * Comprueba paso a paso si el AFD reconoce o no la cadena.
      *
      * @param carac String con el carácter a comprobar.
-     * @return true en caso de reconocer el carácter o false en caso contrario.
+     * @return true En caso de reconocer el carácter o false en caso contrario.
      */
     public boolean paso(String carac) {
         boolean consumir = false;
         Transicion t = tablaT.get(verde.nombre + carac);
+        //Si existe una transicion desde el estado actual
+        //con el caracter recibido
         if (t != null) {
             consumir = true;
             verde = t.destino;
