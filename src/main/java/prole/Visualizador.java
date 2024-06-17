@@ -1,22 +1,21 @@
-package prole.afd;
+package prole;
 
-import prole.Menu;
+import prole.afd.*;
+import javax.swing.*;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  * Clase que muestra el autómata paso a paso.
  *
- * @author diego
+ * @author Diego Francisco Darias Pino
  */
-public class Opcion5 extends JFrame {
+public class Visualizador extends JFrame {
 
-    public int i;
+    public int pos;
     public String cadena;
     public String[] tokens;
-    public AFD automata;
+    public boolean acepta;
+    public AFD afd;
     public VisualizationViewer<String, String> grafo;
     public JFrame gFrame;
 
@@ -26,16 +25,17 @@ public class Opcion5 extends JFrame {
      * @param a Autómata.
      * @param c String con la cadena de símbolos a comprobar.
      */
-    public Opcion5(AFD a, String c) {
+    public Visualizador(AFD a, String c) {
         //inicializar los atributos
-        i = -1;
+        pos = 0;
         cadena = c;
         tokens = c.split(" ");
-        automata = new AFD(a);
-        grafo = GrafoAFD.crear(automata);
+        acepta = false;
+        afd = a;
+        grafo = GrafoAFD.crear(afd);
 
         //crear el JFrame y mostrar el grafo
-        gFrame = new JFrame(Menu.fileName);
+        gFrame = new JFrame(afd.nombre);
         gFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         gFrame.add(grafo);
         gFrame.setBounds(600, 50, 800, 800);
@@ -114,35 +114,24 @@ public class Opcion5 extends JFrame {
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
         //crear el grafo
         JPanel panel = new JPanel();
-
-        //avanzar en la cadena
-        i++;
-
-        //si aún no ha terminado de analizar la cadena
-        if (i < tokens.length) {
-            String s = tokens[i];
-            labelChar.setText("Último carácter: '" + s + "'");
-            //actualizar el grafo
-            boolean avanza = false; //true cuando encuentre una transición válida
-            avanza = AFD.paso(automata, s);
-            labelTran.setText("Última transición: " + automata.ultima);
-            grafo = GrafoAFD.crear(automata);
-
-            //termina si no ha encontrado ninguna transición
-            if (!avanza) {
-                i = 100;
+        if (pos >= 0 && pos < tokens.length) {
+            String carac = tokens[pos];
+            acepta = afd.paso(carac);
+            if (acepta) {
+                pos++;
+                labelChar.setText("Último carácter: '" + carac + "'");
+                labelTran.setText("Última transición: " + afd.ultimaT);
+                //muestra el grafo
+                grafo = GrafoAFD.crear(afd);
+                panel.add(grafo);
+                gFrame.add(grafo);
+                gFrame.setVisible(true);
+            } else {
+                pos = -1;
             }
-            //muestra el grafo
-            panel.add(grafo);
-            gFrame.add(grafo);
-            gFrame.setVisible(true);
-
-        } else { //si ha terminado el análisis
-            //reconocer la cadena (true si ha llegado a algún estado final)
-            boolean reconocida;
+        } else {
             String mensaje;
-            reconocida = automata.verde.ultimo;
-            if (reconocida) {
+            if (acepta && pos == tokens.length && afd.verde.ultimo) {
                 mensaje = "Cadena '" + cadena + "' aceptada";
             } else {
                 mensaje = "Cadena '" + cadena + "' rechazada";

@@ -26,7 +26,6 @@ public class AST {
             //Crea el archivo
             String filename = arbol.getNombre() + ".txt";
             File file = new File(filename);
-            System.out.println("Archivo " + file.getName() + " creado.");
             file.createNewFile();
             FileWriter writer = new FileWriter(filename);
             //Escribe el nombre

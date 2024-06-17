@@ -3,7 +3,7 @@ package prole.afd;
 /**
  * Tipo de datos para manejar las transiciones del autómata.
  *
- * @author diego
+ * @author Diego Francisco Darias Pino
  */
 public class Transicion {
 
@@ -32,7 +32,7 @@ public class Transicion {
      */
     @Override
     public String toString() {
-        return ("(" + origen.nombre + "," + simbolo + "," + destino.nombre + ")");
+        return ("{" + origen.nombre + ",'" + simbolo + "'," + destino.nombre + "}");
     }
 
 }

@@ -1,27 +1,21 @@
 package prole;
 
-import prole.puntos.Tupla;
-import prole.afd.Estado;
-import prole.afd.AFD;
+import prole.puntos.*;
+import prole.afd.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  *
- * @author diego
+ * @author Diego Francisco Darias Pino
  */
 public class Coder {
 
     public static void crearJAVA(AFD afd) {
         try {
             File java = new File(afd.nombre + ".java");
-            if (java.exists()) {
-                java.delete();
-                System.out.println("\nArchivo " + java.getName() + " sobreescrito.\n");
-            } else {
-                System.out.println("\nArchivo " + java.getName() + " creado.\n");
-            }
             java.createNewFile();
 
             FileWriter writer = new FileWriter(afd.nombre + ".java");
@@ -31,15 +25,15 @@ public class Coder {
             writer.write(output);
             output = "\tswitch(state) {\n";
             writer.write(output);
-            for (int i = 0; i < afd.listaS.size(); i++) {
-                Estado s = afd.listaS.get(i);
+            for (Map.Entry<String, Estado> entry : afd.tablaS.entrySet()) {
+                Estado s = entry.getValue();
                 output = "\t  case " + s.nombre + ":\n";
                 writer.write(output);
                 for (int j = 0; j < s.destinos.length; j++) {
                     Tupla tp = s.destinos[j];
                     if (tp != null) {
                         output = "\t      if(symbol == '" + tp.st
-                                + "') return " + tp.destino + ";\n";
+                                + "') return " + tp.destino.nombre + ";\n";
                         writer.write(output);
                     }
                 }
@@ -52,8 +46,8 @@ public class Coder {
             output = "    public boolean isFinal(int state) {\n";
             output = output + "\tswitch(state) {\n";
             writer.write(output);
-            for (int i = 0; i < afd.listaS.size(); i++) {
-                Estado s = afd.listaS.get(i);
+            for (Map.Entry<String, Estado> entry : afd.tablaS.entrySet()) {
+                Estado s = entry.getValue();
                 output = "\t  case " + s.nombre + ": return "
                         + s.ultimo + ";\n";
                 writer.write(output);

@@ -7,12 +7,13 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 import java.awt.*;
+import java.util.Map;
 
 /**
  * Convierte un AFD en un grafo dirigido que puede visualizarse mediante la
  * librería JUNG.
  *
- * @author diego
+ * @author Diego Francisco Darias Pino
  */
 public class GrafoAFD {
 
@@ -28,26 +29,17 @@ public class GrafoAFD {
 
         //añadir los vértices
         grafo.addVertex("inicio");
-        for (int i = 0; i < afd.listaS.size(); i++) {
-            Estado e = afd.listaS.get(i);
-            grafo.addVertex(e.nombre);
+        for (Map.Entry<String, Estado> entry : afd.tablaS.entrySet()) {
+            grafo.addVertex(entry.getKey());
         }
 
         //añadir las aristas
-        grafo.addEdge("", "inicio", afd.inicial.nombre);
+        grafo.addEdge("", "inicio", afd.inicial.nombre, EdgeType.DIRECTED);
         //todas las transiciones
-        for (int i = 0; i < afd.listaT.size(); i++) {
-            Transicion ti = afd.listaT.get(i);
-            String simbolo = ti.simbolo;
-            //combina las que comparten origen y destino 
-            for (int j = i + 1; j < afd.listaT.size(); j++) {
-                Transicion tj = afd.listaT.get(j);
-                if (ti.origen.equals(tj.origen) && ti.destino.equals(tj.destino)) {
-                    simbolo = simbolo + "/" + tj.simbolo;
-                }
-            }
-            String nombre = "{" + ti.origen.nombre + "," + simbolo + "," + ti.destino.nombre + "}";
-            grafo.addEdge(nombre, ti.origen.nombre, ti.destino.nombre, EdgeType.DIRECTED);
+        for (Map.Entry<String, Transicion> entry : afd.tablaT.entrySet()) {
+            Estado ori = entry.getValue().origen;
+            Estado dest = entry.getValue().destino;
+            grafo.addEdge(entry.getValue().toString(), ori.nombre, dest.nombre, EdgeType.DIRECTED);
         }
 
         //crear los visualizadores
@@ -60,7 +52,8 @@ public class GrafoAFD {
         vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
         //forma y tamaño
         vv.getRenderContext().setVertexShapeTransformer(vertex -> {
-            if (afd.esFinal(vertex)) {
+            Estado s = afd.tablaS.get(vertex);
+            if (s != null && afd.esFinal(s)) {
                 return new java.awt.geom.Rectangle2D.Double(-10, -10, 40, 40);
             } else {
                 return new java.awt.geom.Ellipse2D.Double(-10, -10, 40, 40);

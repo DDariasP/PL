@@ -1,9 +1,8 @@
 package prole.puntos;
 
-import prole.ast.AST;
-import prole.lexico.MyConstants;
-import prole.afd.Estado;
-import prole.afd.AFD;
+import prole.ast.*;
+import prole.lexico.*;
+import prole.afd.*;
 import java.util.ArrayList;
 
 /**
@@ -18,10 +17,20 @@ public class MyPuntos implements MyConstants {
     public static AFD genAFD(AST ast) {
         //Expresion inicial
         Expresion exp0 = new Expresion(ast);
+        System.out.println("Expresion regular");
+        String output = "";
+        for (int i = 0; i < exp0.nodos.size(); i++) {
+            Tupla tp = exp0.nodos.get(i);
+            output = output + " " + tp.mostrar();
+        }
+        System.out.println(output);
+
         //Estado inicial
         Estado s0 = new Estado(exp0);
+
         //Lista de Estado del AFD
         ArrayList<Estado> listaAFD = new ArrayList<>();
+
         //Para buscar todos los simbolos no terminales
         //usa la expresion inicial
         ArrayList<String> listaST = new ArrayList<>();
@@ -32,6 +41,7 @@ public class MyPuntos implements MyConstants {
                 listaST.add(sym);
             }
         }
+
         //Hace la clausura lambda del Estado inicial
         ArrayList<Expresion> listaCanon = new ArrayList<>();
         ArrayList<Expresion> listaExp = s0.listaExp;
@@ -39,32 +49,46 @@ public class MyPuntos implements MyConstants {
             Expresion exp = listaExp.get(i);
             Expresion.clausuraLambda(exp, listaCanon);
         }
+
         //Actualiza la lista de Expresion del Estado inicial
         s0.listaExp = listaCanon;
+
         //Mantiene un orden FIFO en el analisis de Estado
         ArrayList<Estado> pilaS = new ArrayList<>();
+
         //Añade el Estado inicial a la pila
         pilaS.add(s0);
+
         //Añade el Estado inicial a la lista del AFD
         listaAFD.add(s0);
+
         //Avanza el punto
         transicion(listaST, pilaS, listaAFD);
-        //Muestra el resultado
+
+        //Crea el AFD
+        //Nombre
+        String nom = ast.arbol.getNombre();
         for (int i = 0; i < listaAFD.size(); i++) {
-            System.out.println(listaAFD.get(i));
-        }
-        //Devuelve el AFD
-        AFD afd = new AFD(listaAFD);
-        afd.nombre = ast.arbol.getNombre();
-        afd.st = listaST.toArray(String[]::new);
-        for (int i = 0; i < afd.listaS.size(); i++) {
-            Estado s = afd.listaS.get(i);
-            Expresion exp = s.listaExp.get(0);
-            if (s.listaExp.size() == 1
-                    && exp.posP == exp.nodos.size()) {
-                s.ultimo = true;
+            Estado s = listaAFD.get(i);
+            //Le da nombre a cada estado
+            s.nombre = Integer.toString(i);
+            boolean encontrado = false;
+            int pos = 0;
+            while (!encontrado && pos < s.listaExp.size()) {
+                Expresion exp = s.listaExp.get(pos);
+                //Marca sus estados ultimos
+                if (exp.posP == exp.nodos.size()) {
+                    encontrado = true;
+                    s.ultimo = true;
+                }
+                pos++;
             }
         }
+        
+        //Crea el AFD
+        AFD afd = new AFD(nom,listaAFD);
+
+        //Devuelve el AFD
         return afd;
     }
 

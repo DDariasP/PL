@@ -212,4 +212,23 @@ public class Tupla {
         return output;
     }
 
+    //Muestra los operadores sin sus caracteres de control
+    public String mostrar() {
+        String output;
+        switch (sym) {
+            case "|(":
+            case "*(":
+            case "+(":
+            case "?(":
+                output = "(";
+                break;
+            case ")|":
+                output = ")";
+                break;
+            default:
+                output = sym;
+        }
+        return output;
+    }
+
 }

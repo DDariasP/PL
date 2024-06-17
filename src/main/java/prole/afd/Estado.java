@@ -11,33 +11,33 @@ import prole.puntos.Tupla;
  */
 public class Estado {
 
-    public static int NUM = 1;
     public String nombre;
     public ArrayList<Expresion> listaExp;
     public Tupla[] destinos;
     public boolean ultimo;
 
     //Estado vacio
-    public Estado(String str) {
-        nombre = str;
+    public Estado() {
+        nombre = "";
         listaExp = new ArrayList<>();
-        listaExp = new ArrayList<>();
+        destinos = new Tupla[0];
         ultimo = false;
     }
 
     //Estado inicial
     public Estado(Expresion exp0) {
-        nombre = "0";
+        nombre = "s0";
         listaExp = new ArrayList<>();
         listaExp.add(exp0);
+        destinos = new Tupla[0];
         ultimo = false;
     }
 
     //Estado generico
     public Estado(ArrayList<Expresion> proto) {
-        nombre = String.valueOf(NUM);
-        NUM++;
+        nombre = "";
         listaExp = proto;
+        destinos = new Tupla[0];
         ultimo = false;
     }
 
@@ -59,7 +59,7 @@ public class Estado {
     //y el Estado destino de cada uno
     @Override
     public String toString() {
-        String output = "\n" + nombre + ":\n";
+        String output = "\nEstado " + nombre + ":\n";
         for (int i = 0; i < destinos.length; i++) {
             Tupla tp = destinos[i];
             if (tp != null) {
@@ -67,7 +67,7 @@ public class Estado {
             }
         }
         for (int i = 0; i < listaExp.size(); i++) {
-            output = output + "\t" + listaExp.get(i) + "\n";
+            output = output + "\t" + Expresion.mostrar(listaExp.get(i)) + "\n";
         }
         return output;
     }

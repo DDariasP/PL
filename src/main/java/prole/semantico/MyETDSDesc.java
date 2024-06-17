@@ -81,7 +81,6 @@ public class MyETDSDesc implements MyConstants {
      * @throws SintaxException Error sintáctico.
      */
     private INodo parseF(INodo F_h) throws SintaxException {
-        System.out.println("F");
         INodo F_s = null;
         int[] expected = {ID};
         switch (nextToken.getKind()) {
@@ -106,7 +105,6 @@ public class MyETDSDesc implements MyConstants {
      * @throws SintaxException Error sintáctico.
      */
     private INodo parseE(INodo E_h) throws SintaxException {
-        System.out.println("E");
         INodo E_s = null;
         int[] expected = {SYMBOL, RPAREN, SEMI, LPAREN};
         switch (nextToken.getKind()) {
@@ -130,7 +128,6 @@ public class MyETDSDesc implements MyConstants {
      * @throws SintaxException Error sintáctico.
      */
     private INodo parseD(INodo D_h) throws SintaxException {
-        System.out.println("D");
         INodo D_s = null;
         int[] expected = {SYMBOL, LPAREN};
         switch (nextToken.getKind()) {
@@ -156,7 +153,6 @@ public class MyETDSDesc implements MyConstants {
         int[] expected = {SYMBOL, LPAREN};
         switch (nextToken.getKind()) {
             case SYMBOL:
-                System.out.println("B-sym");
                 Token tk1 = match(SYMBOL);
                 Base B1_s = new Base();
                 B1_s.setID(tk1.getKind());
@@ -165,7 +161,6 @@ public class MyETDSDesc implements MyConstants {
                 B_s = B_h;
                 break;
             case LPAREN:
-                System.out.println("B-E");
                 Token tk2 = match(LPAREN);
                 Operador B2_s = new Operador();
                 B2_s.setID(tk2.getKind());
@@ -193,14 +188,12 @@ public class MyETDSDesc implements MyConstants {
         switch (nextToken.getKind()) {
             case SYMBOL:
             case LPAREN:
-                System.out.println("BB-sigue");
                 INodo B_s = parseB(BB_h);
                 BB_s = parseBB(B_s);
                 break;
             case OR:
             case SEMI:
             case RPAREN:
-                System.out.println("BB-fin");
                 BB_s = BB_h;
                 break;
             default:
@@ -219,21 +212,18 @@ public class MyETDSDesc implements MyConstants {
         int[] expected = {STAR, PLUS, HOOK, SYMBOL, LPAREN, OR, SEMI, RPAREN};
         switch (nextToken.getKind()) {
             case STAR:
-                System.out.println("O-*");
                 Token tk1 = match(STAR);
                 O_h.setID(tk1.getKind());
                 O_h.setNombre(tk1.getLexeme());
                 O_s = O_h;
                 break;
             case PLUS:
-                System.out.println("O-+");
                 Token tk2 = match(PLUS);
                 O_h.setID(tk2.getKind());
                 O_h.setNombre(tk2.getLexeme());
                 O_s = O_h;
                 break;
             case HOOK:
-                System.out.println("O-?");
                 Token tk3 = match(HOOK);
                 O_h.setID(tk3.getKind());
                 O_h.setNombre(tk3.getLexeme());
@@ -244,7 +234,6 @@ public class MyETDSDesc implements MyConstants {
             case LPAREN:
             case SEMI:
             case RPAREN:
-                System.out.println("O-ninguno");
                 O_s = O_h;
                 break;
             default:
@@ -263,7 +252,6 @@ public class MyETDSDesc implements MyConstants {
         int[] expected = {OR, SEMI, RPAREN};
         switch (nextToken.getKind()) {
             case OR:
-                System.out.println("AA-or");
                 Token tk1 = match(OR);
                 Operador AA1_s = new Operador();
                 AA1_s.setID(tk1.getKind());
@@ -275,7 +263,6 @@ public class MyETDSDesc implements MyConstants {
                 break;
             case SEMI:
             case RPAREN:
-                System.out.println("AA-fin");
                 AA_s = AA_h;
                 break;
             default:

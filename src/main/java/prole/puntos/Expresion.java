@@ -230,4 +230,22 @@ public class Expresion {
         return output;
     }
 
+    //Muestra los operadores sin sus caracteres de control
+    public static String mostrar(Expresion e) {
+        String output = " ";
+        for (int i = 0; i < e.nodos.size(); i++) {
+            Tupla tp = e.nodos.get(i);
+            //Coloca el punto delante del simbolo al que marca
+            if (i == e.posP) {
+                output = output + ". ";
+            }
+            output = output + tp.mostrar() + " ";
+        }
+        //Coloca el punto al final si no marca a ningun simbolo
+        if (e.posP == e.nodos.size()) {
+            output = output + ". ";
+        }
+        return output;
+    }
+
 }
